@@ -1,3 +1,7 @@
+<p float="right">
+  <img src="https://user-images.githubusercontent.com/36040421/145693869-4d2a0506-afc1-4133-9a34-a3a8ca50ef8c.PNG" width="1000" />
+</p>
+
 ## Spent Nuclear Fuel for District Heating
 This repository contains a work in progress paper on the possibility of using spent nuclear fuel assemblies from LWRs as a heat source for a district heating system.
 
