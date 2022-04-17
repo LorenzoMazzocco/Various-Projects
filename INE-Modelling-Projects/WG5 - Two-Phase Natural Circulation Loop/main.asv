@@ -1,0 +1,42 @@
+clear all
+
+data = initialize_data();
+
+p_1 = 45;
+T_1 = 100;
+
+%calcolano FR con formula empirica paper
+
+%CICLI ANNIDATI: p -> T -> m_dot
+
+%ciclo per trovare m_dot usando p_1, T_1 (momentum balance)
+
+%ciclo per la T, fanno tutto il giro del loop stimando U e non imponendo
+%che W_condenser = W_sg (far combaciare T finale e T iniziale)
+
+diff_T = 100;
+
+while diff_T > 1
+[m_dot, converged, pd_tot_sg, pd_tot_riser, h_4] = momentum_loop(p_1, T_1);
+m_dot
+
+if ~converged
+    display('momentum algorithm did not converge!')
+else
+   %compute T_5
+   p_4 = p_1 + pd_tot_sg + pd_tot_riser
+   T_6 = condensation(p_4, h_4, m_dot)
+   display('===============================')
+   diff_T = abs(T_1-T_6);
+   if diff_T < 10
+       T_1 = T_1 + 0.5
+   else
+       T_1 = T_1 + 10
+   end 
+end
+end
+
+display('La T1 selezionata è')
+T_1 = T_1 - 0.5;
+
+T_6 = condensation(p_4, h_4, m_dot)
